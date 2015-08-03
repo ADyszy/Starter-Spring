@@ -1,6 +1,5 @@
 package pl.spring.demo.service;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +30,6 @@ public class BookServiceImplTest {
     }
 
     @Test
-    @Ignore
     public void testShouldFindAllBooksByTitle() {
         // given
         final String title = "Opium w rosole";
@@ -46,7 +44,7 @@ public class BookServiceImplTest {
     public void testShouldThrowBookNotNullIdException() {
         // given
         final BookTo bookToSave = new BookTo();
-        bookToSave.setId(22L);
+		bookToSave.setId(22L);
         // when
         bookService.saveBook(bookToSave);
         // then
