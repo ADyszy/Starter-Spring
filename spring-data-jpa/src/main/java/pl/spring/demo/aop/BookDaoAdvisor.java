@@ -2,12 +2,15 @@ package pl.spring.demo.aop;
 
 
 import org.springframework.aop.MethodBeforeAdvice;
+import org.springframework.stereotype.Service;
+
 import pl.spring.demo.annotation.NullableId;
 import pl.spring.demo.exception.BookNotNullIdException;
 import pl.spring.demo.to.IdAware;
 
 import java.lang.reflect.Method;
 
+@Service
 public class BookDaoAdvisor implements MethodBeforeAdvice {
 
     @Override
@@ -18,13 +21,13 @@ public class BookDaoAdvisor implements MethodBeforeAdvice {
         }
     }
 
-    private void checkNotNullId(Object o) {
+    protected void checkNotNullId(Object o) {
         if (o instanceof IdAware && ((IdAware) o).getId() != null) {
             throw new BookNotNullIdException();
         }
     }
 
-    private boolean hasAnnotation (Method method, Object o, Class annotationClazz) throws NoSuchMethodException {
+    protected boolean hasAnnotation (Method method, Object o, Class annotationClazz) throws NoSuchMethodException {
         boolean hasAnnotation = method.getAnnotation(annotationClazz) != null;
 
         if (!hasAnnotation && o != null) {

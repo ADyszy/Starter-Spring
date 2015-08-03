@@ -4,6 +4,9 @@ import pl.spring.demo.to.BookTo;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public interface BookDao {
 
     List<BookTo> findAll();

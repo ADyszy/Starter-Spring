@@ -10,10 +10,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class BookDaoImpl implements BookDao {
-
+	//@Autowired // In / out ?
     private final Set<BookTo> ALL_BOOKS = new HashSet<>();
-
+	@Autowired
     private Sequence sequence;
 
     public BookDaoImpl() {
@@ -38,9 +42,6 @@ public class BookDaoImpl implements BookDao {
     @Override
     @NullableId
     public BookTo save(BookTo book) {
-        if (book.getId() == null) {
-            book.setId(sequence.nextValue(ALL_BOOKS));
-        }
         ALL_BOOKS.add(book);
         return book;
     }
@@ -57,4 +58,8 @@ public class BookDaoImpl implements BookDao {
         ALL_BOOKS.add(new BookTo(5L, "Pan Samochodzik i Fantomas", "Zbigniew Nienacki"));
         ALL_BOOKS.add(new BookTo(6L, "Zemsta", "Aleksander Fredro"));
     }
+
+	public Long nextSequence() {
+		return sequence.nextValue(ALL_BOOKS);
+	}
 }
