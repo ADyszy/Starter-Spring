@@ -44,7 +44,7 @@ public class BookDaoImpl implements BookDao {
 			String[] entitiesTitleSubs = bookEntity.getTitle().split(" ");
 			addBookIfMatchingToPrefix(argTitleSubs, entitiesTitleSubs, bookEntity, founds);
 		}
-		return new ArrayList<>(substractFullTitleFits(title, founds));
+		return new ArrayList<>(substractFullTitleFits(title, founds) );
 	}
 
 	private Set<BookEntity> substractFullTitleFits(String key, Set<BookEntity> bookEntities) {
@@ -78,12 +78,11 @@ public class BookDaoImpl implements BookDao {
 		return new ArrayList<>(founds);
 	}
 
-	private boolean booksAuthorListPrefixMatch(BookEntity bookEntity, String[] searchedAuths, Set<BookEntity> actualFounds) {
+	private void booksAuthorListPrefixMatch(BookEntity bookEntity, String[] searchedAuths, Set<BookEntity> actualFounds) {
 		for (AuthorTo authorTo : bookEntity.getAuthors()) {
 			String[] bookAuths = authorTo.toString().split(" ");
 			addBookIfMatchingToPrefix(searchedAuths, bookAuths, bookEntity, actualFounds);
 		}
-		return false;
 	}
 	
 	private boolean prefixMatch(String prefix, String checkedWord) {
