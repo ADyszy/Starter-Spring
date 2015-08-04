@@ -50,8 +50,11 @@ public class BookMapperTest {
 	
 	@Test
 	public void testShouldReturnNullWhenArgumentIsNull(){
+		//given
 		BookTo bt = null;
 		BookEntity be = null;
+		//when
+		//then
 		assertNull(bookMapper.getBook(bt));
 		assertNull(bookMapper.getBook(be));
 	}

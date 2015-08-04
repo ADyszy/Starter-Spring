@@ -51,7 +51,6 @@ public class BookDaoImplTest {
 		List<BookEntity> testList = bookDaoImpl.findBookByTitle("Opium w rosole");
 		assertNotNull(testList);
 		assertTrue(!testList.isEmpty());
-		System.out.println(testList);
 		assertEquals(2L, testList.get(0).getId().longValue());
 	}
 
